@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/plan-review.sh",
+            "command": "CODEX_SKILL_PLAN_REVIEW=revise CODEX_SKILL_MODEL=gpt-6-astra CODEX_SKILL_EFFORT=medium bash ${CLAUDE_PLUGIN_ROOT}/hooks/plan-review.sh",
             "timeout": 300
           }
         ]

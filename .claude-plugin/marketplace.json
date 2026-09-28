@@ -2,7 +2,7 @@
   "name": "codex-skill",
   "description": "Single-plugin marketplace for codex-skill",
   "owner": {
-    "name": "cathrynlavery"
+    "name": "tinof"
   },
   "plugins": [
     {
