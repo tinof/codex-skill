@@ -42,10 +42,11 @@ Serve as Claude Code's technical consultant for:
 
 ### Default Command Pattern (Consultation)
 ```bash
-codex exec --sandbox read-only "Your query here"
+command codex exec --sandbox read-only "Your query here"
 ```
 
 ### Implementation Details
+- **Always `command codex`**: a shell alias for `codex` can add flags such as `--dangerously-bypass-approvals-and-sandbox`, which override `--sandbox`. `command` skips the alias.
 - **Subcommand**: `exec` is REQUIRED for non-interactive/automated use
 - **Default sandbox**: `--sandbox read-only` for consultations and reviews
 - **Working directory**: Current project root
@@ -61,7 +62,7 @@ codex exec --sandbox read-only "Your query here"
 Use this only after the user has requested implementation:
 
 ```bash
-codex exec --sandbox workspace-write "Context: [Project name] ([tech stack]). The user requested: [specific edit or fix]. Implement that change within [scope], follow project guidance, and run relevant checks. Report changed files, validation results, and any remaining limitations."
+command codex exec --sandbox workspace-write "Context: [Project name] ([tech stack]). The user requested: [specific edit or fix]. Implement that change within [scope], follow project guidance, and run relevant checks. Report changed files, validation results, and any remaining limitations."
 ```
 
 ### Available Options (all optional)
@@ -89,13 +90,13 @@ Codex currently exposes GPT-6 Astra, the GPT-5.6 family, and GPT-5.5. The comman
 
 ### Prompt Template
 ```bash
-codex exec --sandbox read-only "Context: [Project name] ([tech stack]). Relevant docs: @/CLAUDE.md plus package-level CLAUDE.md files. Task: <short task>. Repository evidence: <paths/lines from rg/git>. Constraints: [constraints]. Please return: (1) decisive answer; (2) supporting citations (paths:line); (3) risks/edge cases; (4) recommended next steps/tests; (5) open questions. List any uncertainties explicitly."
+command codex exec --sandbox read-only "Context: [Project name] ([tech stack]). Relevant docs: @/CLAUDE.md plus package-level CLAUDE.md files. Task: <short task>. Repository evidence: <paths/lines from rg/git>. Constraints: [constraints]. Please return: (1) decisive answer; (2) supporting citations (paths:line); (3) risks/edge cases; (4) recommended next steps/tests; (5) open questions. List any uncertainties explicitly."
 ```
 
 ### Context Sharing Pattern
 Always provide project context:
 ```bash
-codex exec --sandbox read-only "Context: This is the [Project] monorepo, a [description] using [tech stack].
+command codex exec --sandbox read-only "Context: This is the [Project] monorepo, a [description] using [tech stack].
 
 Key documentation is at @/CLAUDE.md
 
